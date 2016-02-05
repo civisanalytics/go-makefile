@@ -82,13 +82,10 @@ bats test
      build and release process between multiple projects while defining a version and allowing
      integration with an existing Makefile workflow.
 
+
 ## Contributing
 
- 1. Fork it ( https://github.com/civisanalytics/go-makefile/fork )
- 1. Create your feature branch (`git checkout -b my-new-feature`)
- 1. Commit your changes (`git commit -am 'Add some feature'`)
- 1. Push to the branch (`git push origin my-new-feature`)
- 1. Create a new Pull Request
+See [CONTRIBUTING](CONTRIBUTING.md).
 
 ## License
 
