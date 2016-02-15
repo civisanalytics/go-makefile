@@ -1,5 +1,7 @@
 # go-makefile
 
+[![Build Status](https://travis-ci.org/civisanalytics/go-makefile.svg?branch=master)](https://travis-ci.org/civisanalytics/go-makefile)
+
 Define a set of standards for versioning, packaging, and releasing Go projects.
 
 This project's objective is to compile a Go project for standard architectures,

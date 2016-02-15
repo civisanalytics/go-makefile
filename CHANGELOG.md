@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Added a [Code of Conduct](CODE_OF_CONDUCT.md)
+- Added Travis integration
 
 ## [1.0.0] - 2016-01-20
 ### Added
