@@ -38,7 +38,7 @@ build: check-env
 		shasum -a256 *.tar.bz2 > SHA256SUMS"
 
 test:
-	@$(DOCKER_RUN) /bin/bash -c "go get -d ./... && go vet -x ./... && go test ./..."
+	@$(DOCKER_RUN) /bin/bash -c "go get -d -t ./... && go vet -x ./... && go test ./..."
 
 release: check-env test build
 	$(DOCKER_RUN) /bin/bash -c "hub release create \

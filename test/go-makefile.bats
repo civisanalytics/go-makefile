@@ -3,6 +3,7 @@
 export TMP="${BATS_TEST_DIRNAME}/tmp/go-makefile"
 export TMP_PROJECTDIR="${TMP}/example"
 
+# remove 2>&1 to view docker build output
 docker build -t go-makefile --quiet . >/dev/null 2>&1
 
 @test "before_all" {
@@ -21,6 +22,16 @@ func main() {
 }
 EOT
 
+  cat <<EOT > main_test.go
+package main
+import "testing"
+func TestTrue(t *testing.T) {
+    if false != false {
+      t.Error("false is not false")
+    }
+}
+EOT
+
   cat <<EOT > Makefile
 VERSION := 1.0.0
 REPOSITORY := github.com/civisanalytics/example
@@ -36,10 +47,29 @@ EOT
   pushd example_package
 
   cat <<EOT > main.go
-package main
+package example_package
 import "fmt"
 func main() {
     fmt.Println("hello world from example_package")
+}
+EOT
+
+  cat <<EOT > main_test.go
+package example_package
+import (
+  "testing"
+  "github.com/golang/example/stringutil"
+)
+func TestTrue(t *testing.T) {
+    if true != true {
+      t.Error("true is not true")
+    }
+}
+
+func TestReverse(t *testing.T) {
+    if stringutil.Reverse("hello") != "olleh" {
+      t.Error("hello cannot be reversed")
+    }
 }
 EOT
 
@@ -53,6 +83,11 @@ EOT
   [ "$output" = "hello world 1.0.0" ]
 }
 
+@test "make test gets test packages" {
+  cd $TMP_PROJECTDIR
+  make test
+}
+
 @test "check SHA256SUMS" {
   cd $TMP_PROJECTDIR
 
@@ -60,8 +95,9 @@ EOT
 
   # echo $sha256sums
 
-  expected_sha256sums="a950050d9381ffa8edf5db8feff604e6f7f66c9073afe6a1c008e989c2a1ad71  example_1.0.0_darwin_amd64.tar.bz2
-f429864d12cb66bace3833145809450e5e7bab7f4f11f9b28956d191b1b575d9  example_1.0.0_linux_amd64.tar.bz2"
+  # two spaces between checksum and filename
+  expected_sha256sums="93c1f92a0477b5ff110282bcc1645b62bb72aaaa886c7ef56504ff9b6cf17023  example_1.0.0_darwin_amd64.tar.bz2
+ae0650d6589820d614b34fc1a88e7994e03d45f8c100d139b7bbee97960fec03  example_1.0.0_linux_amd64.tar.bz2"
 
   [ "$sha256sums" = "$expected_sha256sums" ]
 }
