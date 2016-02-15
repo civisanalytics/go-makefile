@@ -79,7 +79,7 @@ EOT
 
 @test "check version" {
   cd $TMP_PROJECTDIR
-  run "build/example_1.0.0_darwin_amd64/example"
+  run "build/example_1.0.0_$(uname | tr 'A-Z' 'a-z')_amd64/example"
   [ "$output" = "hello world 1.0.0" ]
 }
 
@@ -100,4 +100,10 @@ EOT
 ae0650d6589820d614b34fc1a88e7994e03d45f8c100d139b7bbee97960fec03  example_1.0.0_linux_amd64.tar.bz2"
 
   [ "$sha256sums" = "$expected_sha256sums" ]
+}
+
+teardown() {
+  if [ -n "$output" ]; then
+    echo "not ok: $output"
+  fi
 }
