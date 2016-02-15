@@ -12,6 +12,8 @@ ifndef DOCKER_IMAGE
 endif
 DOCKER_RUN := docker run --rm -v $(shell pwd):$(SRC) -w $(SRC) -e GITHUB_TOKEN $(DOCKER_IMAGE)
 
+REPRODUCABLE_TAR := --mtime='1970-01-01 00:00Z' --owner=root --group=root --numeric-owner
+
 .PHONY: check-env build test release
 
 default: build
@@ -34,7 +36,7 @@ build: check-env
 		-output '$(SRC)/build/$(shell basename $(REPOSITORY))_$(VERSION)_{{.OS}}_{{.Arch}}/{{.Dir}}' \
 		./... && \
 		cd build/ && \
-		find \$$PWD -mindepth 1 -type d -exec sh -c \"DIR={} && tar -C {} --mtime='1970-01-01 00:00:00' -cf - \\\$$(ls \\\$$DIR) | bzip2 -z > {}.tar.bz2\" \; && \
+		find \$$PWD -mindepth 1 -type d -exec sh -c \"DIR={} && tar -C {} $(REPRODUCABLE_TAR) -cf - \\\$$(ls \\\$$DIR) | bzip2 -z > {}.tar.bz2\" \; && \
 		shasum -a256 *.tar.bz2 > SHA256SUMS"
 
 test:

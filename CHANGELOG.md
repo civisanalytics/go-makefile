@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.1] - 2016-02-15
 ### Fixed
 - Ensure `make test` downloads test packages
+- Add more tar flags to ensure a consistent checksum
 
 ### Added
 - Added a [Code of Conduct](CODE_OF_CONDUCT.md)
