@@ -3,6 +3,7 @@
 export TMP="${BATS_TEST_DIRNAME}/tmp/go-makefile"
 export TMP_PROJECTDIR="${TMP}/example"
 
+# remove 2>&1 to view docker build output
 docker build -t go-makefile --quiet . >/dev/null 2>&1
 
 @test "before_all" {
@@ -21,6 +22,16 @@ func main() {
 }
 EOT
 
+  cat <<EOT > main_test.go
+package main
+import "testing"
+func TestTrue(t *testing.T) {
+    if false != false {
+      t.Error("false is not false")
+    }
+}
+EOT
+
   cat <<EOT > Makefile
 VERSION := 1.0.0
 REPOSITORY := github.com/civisanalytics/example
@@ -36,10 +47,29 @@ EOT
   pushd example_package
 
   cat <<EOT > main.go
-package main
+package example_package
 import "fmt"
 func main() {
     fmt.Println("hello world from example_package")
+}
+EOT
+
+  cat <<EOT > main_test.go
+package example_package
+import (
+  "testing"
+  "github.com/golang/example/stringutil"
+)
+func TestTrue(t *testing.T) {
+    if true != true {
+      t.Error("true is not true")
+    }
+}
+
+func TestReverse(t *testing.T) {
+    if stringutil.Reverse("hello") != "olleh" {
+      t.Error("hello cannot be reversed")
+    }
 }
 EOT
 
@@ -49,8 +79,13 @@ EOT
 
 @test "check version" {
   cd $TMP_PROJECTDIR
-  run "build/example_1.0.0_darwin_amd64/example"
+  run "build/example_1.0.0_$(uname | tr 'A-Z' 'a-z')_amd64/example"
   [ "$output" = "hello world 1.0.0" ]
+}
+
+@test "make test gets test packages" {
+  cd $TMP_PROJECTDIR
+  make test
 }
 
 @test "check SHA256SUMS" {
@@ -60,8 +95,15 @@ EOT
 
   # echo $sha256sums
 
-  expected_sha256sums="a950050d9381ffa8edf5db8feff604e6f7f66c9073afe6a1c008e989c2a1ad71  example_1.0.0_darwin_amd64.tar.bz2
-f429864d12cb66bace3833145809450e5e7bab7f4f11f9b28956d191b1b575d9  example_1.0.0_linux_amd64.tar.bz2"
+  # two spaces between checksum and filename
+  expected_sha256sums="48b360b97045dbd3c98273059a8b30dcbd139242d0bbee59e2b23a13e29a68b2  example_1.0.0_darwin_amd64.tar.bz2
+1e0f782d56dad26ab8533a1a9f6bbec8a8029249fd4dd5abbae545c625c9b2f9  example_1.0.0_linux_amd64.tar.bz2"
 
   [ "$sha256sums" = "$expected_sha256sums" ]
+}
+
+teardown() {
+  if [ -n "$output" ]; then
+    echo "not ok: $output"
+  fi
 }

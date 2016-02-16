@@ -1,0 +1,17 @@
+sudo: required
+
+language: ruby
+
+services:
+  - docker
+
+install: git clone --depth 1 https://github.com/sstephenson/bats.git
+cache:
+  directories:
+    - bats
+
+branches:
+  only:
+    - master
+
+script: PATH="./bats/bin:$PATH" bats test
