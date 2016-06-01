@@ -17,7 +17,7 @@ RUN curl -L https://storage.googleapis.com/golang/go${GOVERSION}.linux-amd64.tar
 
 RUN go get github.com/mitchellh/gox
 
-RUN curl -L https://github.com/github/hub/releases/download/v2.2.2/hub-linux-amd64-2.2.2.tgz \
-    | tar xzf - -C /opt --strip-components=2 hub-linux-amd64-2.2.2/bin/hub
+RUN curl -L https://github.com/github/hub/releases/download/v2.2.3/hub-linux-amd64-2.2.3.tgz \
+    | tar xzf - -C /opt --strip-components=2 hub-linux-amd64-2.2.3/bin/hub
 
 CMD gox
