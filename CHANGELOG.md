@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.2] - 2016-06-01
+### Changed
+- Upgrade go to 1.5.4
+- Upgrade hub to 2.2.3
+- Specify tag for go-makefile Docker image
+
 ## [1.0.1] - 2016-02-15
 ### Fixed
 - Ensure `make test` downloads test packages
@@ -18,5 +24,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Initial Release
 
 [Unreleased]: https://github.com/civisanalytics/go-makefile/compare/v1.0.1...HEAD
+[1.0.2]: https://github.com/civisanalytics/go-makefile/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/civisanalytics/go-makefile/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/civisanalytics/go-makefile/commit/5874cf92241d4f5a25a7ccb444fe2e98e136c666
