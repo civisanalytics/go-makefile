@@ -3,12 +3,12 @@
 # license that can be found in the LICENSE.txt file at
 # https://github.com/civisanalytics/go-makefile
 
-GO_MAKEFILE_VERSION := 1.0.1
+GO_MAKEFILE_VERSION := 1.0.2
 
 SRC := /gopath/src/$(REPOSITORY)
 
 ifndef DOCKER_IMAGE
-	DOCKER_IMAGE := civisanalytics/go-makefile
+	DOCKER_IMAGE := civisanalytics/go-makefile:v$(GO_MAKEFILE_VERSION)
 endif
 DOCKER_RUN := docker run --rm -v $(shell pwd):$(SRC) -w $(SRC) -e GITHUB_TOKEN $(DOCKER_IMAGE)
 
