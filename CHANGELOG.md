@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.3] - 2016-06-08
+### Changed
+- Use a plausable mtime when creating the archive to avoid tar warnings
+
 ## [1.0.2] - 2016-06-01
 ### Changed
 - Upgrade go to 1.5.4

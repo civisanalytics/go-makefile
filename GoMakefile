@@ -3,7 +3,7 @@
 # license that can be found in the LICENSE.txt file at
 # https://github.com/civisanalytics/go-makefile
 
-GO_MAKEFILE_VERSION := 1.0.2
+GO_MAKEFILE_VERSION := 1.0.3
 
 SRC := /gopath/src/$(REPOSITORY)
 
@@ -12,7 +12,7 @@ ifndef DOCKER_IMAGE
 endif
 DOCKER_RUN := docker run --rm -v $(shell pwd):$(SRC) -w $(SRC) -e GITHUB_TOKEN $(DOCKER_IMAGE)
 
-REPRODUCIBLE_TAR := --mtime='1970-01-01 00:00Z' --owner=root --group=root --numeric-owner
+REPRODUCIBLE_TAR := --mtime='2001-01-01 01:01Z' --owner=root --group=root --numeric-owner
 
 .PHONY: check-env build test release
 

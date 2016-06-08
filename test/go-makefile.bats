@@ -93,11 +93,11 @@ EOT
 
   sha256sums=$(<"${TMP_PROJECTDIR}/build/SHA256SUMS")
 
-  # echo $sha256sums
+  echo $sha256sums
 
   # two spaces between checksum and filename
-  expected_sha256sums="ebebe37477107d7f35f70f5e3011f188a77596a6f78cde724ee56b42b54f9cce  example_1.0.0_darwin_amd64.tar.bz2
-2924e4f10fbd9fdce033a586a78e9ddd9731e4765a82aa30956fcc758f6f8662  example_1.0.0_linux_amd64.tar.bz2"
+  expected_sha256sums="863ac89c622fc4f4ca2871bcab33037983fd661d28200f6f5bed84b9d46ab79f  example_1.0.0_darwin_amd64.tar.bz2
+db6de52790e2b13d918579a2eaf19adf6e3d9e6add0cdf41e74e3b58caa75fe7  example_1.0.0_linux_amd64.tar.bz2"
 
   [ "$sha256sums" = "$expected_sha256sums" ]
 }
