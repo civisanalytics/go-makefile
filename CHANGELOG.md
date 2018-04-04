@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.0]
+### Changed
+Update Go version to 1.10.1
+
 ## [1.0.3] - 2016-06-08
 ### Changed
 - Use a plausable mtime when creating the archive to avoid tar warnings
