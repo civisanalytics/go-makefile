@@ -96,8 +96,8 @@ EOT
   echo $sha256sums
 
   # two spaces between checksum and filename
-  expected_sha256sums="863ac89c622fc4f4ca2871bcab33037983fd661d28200f6f5bed84b9d46ab79f  example_1.0.0_darwin_amd64.tar.bz2
-db6de52790e2b13d918579a2eaf19adf6e3d9e6add0cdf41e74e3b58caa75fe7  example_1.0.0_linux_amd64.tar.bz2"
+  expected_sha256sums="b656f37a49b5ec5f0de00d76224ca3ac1243182031029cb5a94f424c0b50e054  example_1.0.0_darwin_amd64.tar.bz2
+d15305932427664a18d441c708dd0805016afa6f9f7570aee827a3cf05ef94a1  example_1.0.0_linux_amd64.tar.bz2"
 
   [ "$sha256sums" = "$expected_sha256sums" ]
 }
