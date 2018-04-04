@@ -4,7 +4,7 @@ RUN apt-get update -y && apt-get install --no-install-recommends -y -q \
                          curl build-essential ca-certificates git mercurial bzr \
                       && rm -rf /var/lib/apt/lists/*
 
-ENV GOVERSION 1.5.4
+ENV GOVERSION 1.10.1
 
 ENV GOROOT /goroot
 ENV GOPATH /gopath
