@@ -3,7 +3,7 @@
 # license that can be found in the LICENSE.txt file at
 # https://github.com/civisanalytics/go-makefile
 
-GO_MAKEFILE_VERSION := 1.1.0
+GO_MAKEFILE_VERSION := 1.2.0
 
 SRC := /gopath/src/$(REPOSITORY)
 
