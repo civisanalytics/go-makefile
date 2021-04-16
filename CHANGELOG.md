@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [1.2.0]
+## [1.2.0] - 2021-04-16
 ### Added
 Pull request template
 
