@@ -4,15 +4,16 @@ RUN apt-get update -y && apt-get install --no-install-recommends -y -q \
                          curl build-essential ca-certificates git mercurial bzr \
                       && rm -rf /var/lib/apt/lists/*
 
-ENV GOVERSION 1.10.1
+ENV GOVERSION 1.16.3
 
 ENV GOROOT /goroot
 ENV GOPATH /gopath
+ENV GO111MODULE auto
 
 RUN mkdir $GOROOT $GOPATH
 ENV PATH $GOROOT/bin:$GOPATH/bin:/opt:$PATH
 
-RUN curl -L https://storage.googleapis.com/golang/go${GOVERSION}.linux-amd64.tar.gz \
+RUN curl -L https://golang.org/dl/go${GOVERSION}.linux-amd64.tar.gz \
     | tar xzf - -C $GOROOT --strip-components=1
 
 RUN go get github.com/mitchellh/gox

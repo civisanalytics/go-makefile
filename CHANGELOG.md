@@ -4,6 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.2.0] - 2021-04-16
+### Added
+Pull request template
+
+### Changed
+Upgrade Go to 1.16.3
+Update download location for Go linux binary
+Set GO111MODULE environment variable to auto to enable support for GOPATH mode due to breaking change in Go 1.16
+
 ## [1.1.0]
 ### Changed
 Update Go version to 1.10.1
